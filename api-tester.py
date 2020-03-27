@@ -11,10 +11,12 @@ def main():
     }
 
     endpoints = [
+        {'method': 'get', 'path': 'constituents/000000'},
         {'method': 'get', 'path': 'constituents/649040'},
-        {'method': 'get', 'path': 'constituents/profile/649040'},
         {'method': 'get', 'path': 'constituents/profile/000000'},
         {'method': 'get', 'path': 'constituents/profile/649040'},
+        {'method': 'get', 'path': 'constituents/fullprofile/000000'},
+        {'method': 'get', 'path': 'constituents/fullprofile/417795'},
     ]      
 
     for endpoint in endpoints:
@@ -26,7 +28,7 @@ def test_endpoint(host, endpoint, headers, method="get", data=''):
     result = requests.get(url, headers=headers)
 
     if result.status_code != 200:
-        print("Request failed with response {}\n".format(result.status_code)) 
+        print("Request failed with response {}: \"{}\"\n".format(result.status_code, result.reason)) 
         return
 
     print("Result:")
