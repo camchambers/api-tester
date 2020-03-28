@@ -29,3 +29,34 @@ class PostTest(ApiTest):
        super().__init__(path, expected_status_code)
        self.data = data
 
+class ApiTester:
+    headers = {}
+    api_tests = {}
+    show_request_responses = False
+
+    def __init__(self, host, api_tests, headers): 
+        self.host = host
+        self.api_tests = api_tests
+        self.headers = headers
+
+    def run_tests(self):
+        print("Running tests...")        
+        print("Result\t\tExpected\tActual\t\tEndpoint")
+
+        for test in self.api_tests:
+            url = self.host + "/" + test.path
+            result = requests.get(url, headers=self.headers)
+
+            if test.expected_status_code == result.status_code:
+                print("[PASS]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, url)) 
+            else:
+                print("[FAIL]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, url))
+
+            if self.show_request_responses == True:
+                if result.status_code == 200:
+                    print("Result:")
+                    parsed = json.loads(result.content)
+                    print(json.dumps(parsed, indent=4)+ "\n")
+
+if __name__=="__main__":
+        main()
