@@ -9,7 +9,23 @@ def main():
         'Accept-Charset': 'UTF-8',
         'X-API-Key': "<api key here>"
     }
-    
+
+    apiTests = {
+        GetTest('constituens/000000', 404),
+        GetTest('constituents/649040', 200),
+        GetTest('constituents/profile/000000', 404),
+        GetTest('constituents/profile/649040', 200),
+        GetTest('constituents/fullprofile/000000', 404),
+        GetTest('constituents/fullprofile/417795', 200),
+        GetTest('constituents/search/000000', 404),
+        GetTest('constituents/search/20242347', 200),
+        GetTest('constituents/search/xby2zy94', 404),
+        GetTest('constituents/search/jemcclin', 200),
+    }
+
+    apiTester = ApiTester(host, apiTests, headers) 
+    apiTester.run_tests()
+
 class ApiTest:
     path = ''
     expected_status_code = ''
