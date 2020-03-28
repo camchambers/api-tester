@@ -22,3 +22,10 @@ class GetTest(ApiTest):
     def __init__(self, path, expected_status_code):
        super().__init__(path, expected_status_code)
 
+class PostTest(ApiTest):
+    data = {}
+
+    def __init__(self, path, expected_status_code, data = {}):
+       super().__init__(path, expected_status_code)
+       self.data = data
+
