@@ -7,7 +7,7 @@ def main():
     headers = {
         'content-type': 'application/json',
         'Accept-Charset': 'UTF-8',
-        'x-api-key': "<api key here>"
+        'X-API-Key': "<api key here>"
     }
 
     endpoints = [
