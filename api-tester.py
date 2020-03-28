@@ -10,30 +10,10 @@ def main():
         'X-API-Key': "<api key here>"
     }
 
-    endpoints = [
-        {'method': 'get', 'path': 'constituents/000000'},
-        {'method': 'get', 'path': 'constituents/649040'},
-        {'method': 'get', 'path': 'constituents/profile/000000'},
-        {'method': 'get', 'path': 'constituents/profile/649040'},
-        {'method': 'get', 'path': 'constituents/fullprofile/000000'},
-        {'method': 'get', 'path': 'constituents/fullprofile/417795'},
-    ]      
+class ApiTest:
+    path = ''
+    expected_status_code = ''
 
-    for endpoint in endpoints:
-        test_endpoint(host, endpoint['path'], headers, endpoint['method'])
-
-def test_endpoint(host, endpoint, headers, method="get", data=''):
-    print("Testing endpoint \"" + endpoint + "\"")
-    url = host + "/" + endpoint
-    result = requests.get(url, headers=headers)
-
-    if result.status_code != 200:
-        print("Request failed with response {}: \"{}\"\n".format(result.status_code, result.reason)) 
-        return
-
-    print("Result:")
-    parsed = json.loads(result.content)
-    print(json.dumps(parsed, indent=4)+ "\n")
-
-if __name__=="__main__":
-        main()
+    def __init__(self, path, expected_status_code):
+        self.path = path
+        self.expected_status_code = expected_status_code
