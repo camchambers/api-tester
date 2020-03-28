@@ -9,7 +9,7 @@ def main():
         'Accept-Charset': 'UTF-8',
         'X-API-Key': "<api key here>"
     }
-
+    
 class ApiTest:
     path = ''
     expected_status_code = ''
@@ -17,3 +17,8 @@ class ApiTest:
     def __init__(self, path, expected_status_code):
         self.path = path
         self.expected_status_code = expected_status_code
+
+class GetTest(ApiTest):
+    def __init__(self, path, expected_status_code):
+       super().__init__(path, expected_status_code)
+
