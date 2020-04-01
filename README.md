@@ -3,14 +3,18 @@
 
 ## Example
 ```python
+    # Specify the host you wish to test
     host = "http://localhost:54321"
 
+    # Specify headers that will be attached to requests
     headers = {
         'content-type': 'application/json',
         'Accept-Charset': 'UTF-8',
         'X-API-Key': "<api key here>"
     }
 
+    # Define all of the tests to run (either a GET or POST test)
+    # and the expected HTTP status code returned by each test
     apiTests = {
         GetTest('constituens/000000', 404),
         GetTest('constituents/54321', 200),
@@ -24,6 +28,7 @@
         GetTest('constituents/search/joesmith', 200),
     }
 
+    # Instantiate a tester object and run the tests
     apiTester = ApiTester(host, apiTests, headers) 
     apiTester.run_tests()
 ```
