@@ -10,10 +10,12 @@ class ApiTest:
         self.expected_status_code = expected_status_code
 
 class GetTest(ApiTest):
+    request_type='GET '
     def __init__(self, expected_status_code, path):
        super().__init__(expected_status_code, path)
 
 class PostTest(ApiTest):
+    request_type='POST'
     data = {}
 
     def __init__(self, expected_status_code, path, data = {}):
@@ -44,9 +46,9 @@ class ApiTester:
                 result = requests.post(url,headers=self.headers, data=test.data)
 
             if test.expected_status_code == result.status_code:
-                print("[PASS]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, url)) 
+                print("[PASS]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, test.request_type + " " + url)) 
             else:
-                print("[FAIL]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, url))
+                print("[FAIL]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, test.request_type + " " + url))
 
             if self.show_request_responses == True:
                 if result.status_code == 200:
