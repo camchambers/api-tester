@@ -35,8 +35,13 @@ class ApiTester:
         print("Result\t\tExpected\tActual\t\tEndpoint")
 
         for test in self.api_tests:
+            
             url = self.host + "/" + test.path
-            result = requests.get(url, headers=self.headers)
+
+            if isinstance(test, GetTest):
+                result = requests.get(url, headers=self.headers)
+            elif isinstance(test, PostTest):
+                result = requests.post(url,headers=self.headers, data=test.data)
 
             if test.expected_status_code == result.status_code:
                 print("[PASS]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, url)) 
