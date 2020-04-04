@@ -21,16 +21,16 @@ def main():
     # Define all of the tests to run (either a GET or POST test)
     # and the expected HTTP status code returned by each test
     apiTests = {
-        at.GetTest('constituents/000000', 404),
-        at.GetTest('constituents/54321', 200),
-        at.GetTest('constituents/profile/000000', 404),
-        at.GetTest('constituents/profile/54321', 200),
-        at.GetTest('constituents/fullprofile/000000', 404),
-        at.GetTest('constituents/fullprofile/54321', 200),
-        at.GetTest('constituents/search/000000', 404),
-        at.GetTest('constituents/search/54321', 200),
-        at.GetTest('constituents/search/zzzzzzzz', 404),
-        at.GetTest('constituents/search/joesmith', 200),
+        at.GetTest(404, 'constituents/000000'),
+        at.GetTest(200, 'constituents/54321'),
+        at.GetTest(404, 'constituents/profile/000000'),
+        at.GetTest(200, 'constituents/profile/54321'),
+        at.GetTest(404, 'constituents/fullprofile/000000'),
+        at.GetTest(200, 'constituents/fullprofile/54321'),
+        at.GetTest(404, 'constituents/search/000000'),
+        at.GetTest(200, 'constituents/search/54321'),
+        at.GetTest(404, 'constituents/search/zzzzzzzz'),
+        at.GetTest(200, 'constituents/search/joesmith'),
     }
 
     # Instantiate a tester object and run the tests
