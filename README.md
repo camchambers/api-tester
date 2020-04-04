@@ -3,6 +3,11 @@
 
 ## Example
 ```python
+
+import api_tester as at
+
+def main():
+
     # Specify the host you wish to test
     host = "http://localhost:54321"
 
@@ -16,21 +21,25 @@
     # Define all of the tests to run (either a GET or POST test)
     # and the expected HTTP status code returned by each test
     apiTests = {
-        GetTest('constituens/000000', 404),
-        GetTest('constituents/54321', 200),
-        GetTest('constituents/profile/000000', 404),
-        GetTest('constituents/profile/54321', 200),
-        GetTest('constituents/fullprofile/000000', 404),
-        GetTest('constituents/fullprofile/54321', 200),
-        GetTest('constituents/search/000000', 404),
-        GetTest('constituents/search/54321', 200),
-        GetTest('constituents/search/zzzzzzzz', 404),
-        GetTest('constituents/search/joesmith', 200),
+        at.GetTest('constituents/000000', 404),
+        at.GetTest('constituents/54321', 200),
+        at.GetTest('constituents/profile/000000', 404),
+        at.GetTest('constituents/profile/54321', 200),
+        at.GetTest('constituents/fullprofile/000000', 404),
+        at.GetTest('constituents/fullprofile/54321', 200),
+        at.GetTest('constituents/search/000000', 404),
+        at.GetTest('constituents/search/54321', 200),
+        at.GetTest('constituents/search/zzzzzzzz', 404),
+        at.GetTest('constituents/search/joesmith', 200),
     }
 
     # Instantiate a tester object and run the tests
     apiTester = ApiTester(host, apiTests, headers) 
     apiTester.run_tests()
+   
+if __name__=="__main__":
+        main()
+    
 ```
 
 ## Clone
