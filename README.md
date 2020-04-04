@@ -34,7 +34,7 @@ def main():
     }
 
     # Instantiate a tester object and run the tests
-    apiTester = ApiTester(host, apiTests, headers) 
+    apiTester = at.ApiTester(host, apiTests, headers) 
     apiTester.run_tests()
    
 if __name__=="__main__":
