@@ -47,6 +47,7 @@ class ApiTester:
                 result = requests.post(url,headers=self.headers, data=test.data)
                 if self.show_post_data == True:
                     post_data = json.loads(test.data)
+                    print("POST data:")
                     print(json.dumps(post_data, indent=4)+ "\n")
 
             if test.expected_status_code == result.status_code:
@@ -54,8 +55,14 @@ class ApiTester:
             else:
                 print("[FAIL]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, test.request_type + " " + url))
 
+            if isinstance(test, PostTest):
+                if self.show_post_data == True:
+                    post_data = json.loads(test.data)
+                    print("POST data:")
+                    print(json.dumps(post_data, indent=4)+ "\n")
+
             if self.show_request_responses == True:
                 if result.status_code == 200:
-                    print("Result:")
+                    print("Response:")
                     parsed = json.loads(result.content)
                     print(json.dumps(parsed, indent=4)+ "\n")
