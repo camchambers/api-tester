@@ -25,6 +25,7 @@ class PostTest(ApiTest):
 class ApiTester:
     headers = {}
     api_tests = {}
+    show_post_data = False
     show_request_responses = False
 
     def __init__(self, host, api_tests, headers): 
@@ -44,6 +45,9 @@ class ApiTester:
                 result = requests.get(url, headers=self.headers)
             elif isinstance(test, PostTest):
                 result = requests.post(url,headers=self.headers, data=test.data)
+                if self.show_post_data == True:
+                    post_data = json.loads(test.data)
+                    print(json.dumps(post_data, indent=4)+ "\n")
 
             if test.expected_status_code == result.status_code:
                 print("[PASS]\t\t{}\t\t{}\t\t{}".format(test.expected_status_code, result.status_code, test.request_type + " " + url)) 
