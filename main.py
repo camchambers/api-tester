@@ -30,6 +30,10 @@ def main():
     if "-v" in sys.argv:
         apiTester.show_request_responses = True
 
+    if "-vv" in sys.argv:
+        apiTester.show_request_responses = True
+        apiTester.show_post_data = True
+
     apiTester.run_tests()
 
 if __name__=="__main__":
