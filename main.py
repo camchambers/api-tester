@@ -1,4 +1,5 @@
 import api_tester as at
+import sys
 
 def main():
 
@@ -25,7 +26,10 @@ def main():
     }
 
     apiTester = at.ApiTester(host, apiTests, headers) 
-    
+
+    if "-v" in sys.argv:
+        apiTester.show_request_responses = True
+
     apiTester.run_tests()
 
 if __name__=="__main__":
