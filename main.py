@@ -22,7 +22,7 @@ def main():
         at.GetTest(404,'constituents/search/000000'),
         at.GetTest(200,'constituents/search/20242347'),
         at.GetTest(404,'constituents/search/xby2zy94'),
-        at.GetTest(200,'constituents/search/jemcclin'),
+        at.GetTest(200,'constituents/search/janedoe'),
     }
 
     apiTester = at.ApiTester(host, apiTests, headers) 
